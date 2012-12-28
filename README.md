@@ -1,9 +1,10 @@
 <h1>A Node.js app that ports the <a href='http://angularjs.org/#mongolab-js' target='_blank'>AngularJS Todo app</a> to use MySQL backend(instead of MongoDB)</h1>
 
 <p align="center">
-![image](https://raw.github.com/rajaraodv/mysqltodo/master/appImg0.png)
 
-
+<span style='align:left'> <img src="https://raw.github.com/rajaraodv/mysqltodo/master/appImg0.png" height="250px" width="350px" /></span><span style='align:left'> 
+<img src="https://raw.github.com/rajaraodv/mysqltodo/master/appImg1.png" height="250px" width="350px" /></span>
+</p>
 #### Running it locally ####
 * Clone the app to `mysqltodo` folder
 * `cd mysqltodo` folder
