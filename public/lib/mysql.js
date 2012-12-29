@@ -1,7 +1,7 @@
 //Update this to use mysql
 angular.module('mysql', ['ngResource']).
     factory('Project', function ($resource) {
-        var Project = $resource('/todo', {}, {update:{method:'PUT'}});
+        var Project = $resource('/project', {}, {update:{method:'PUT'}});
 
         Project.prototype.update = function (cb) {
             return Project.update({id:this.id},

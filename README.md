@@ -1,13 +1,13 @@
-<h1>A Node.js app that ports the <a href='http://angularjs.org/#mongolab-js' target='_blank'>AngularJS Todo app</a> to use MySQL backend(instead of MongoDB)</h1>
+<h1>A Node.js app that ports the <a href='http://angularjs.org/#mongolab-js' target='_blank'>AngularJS Projects app</a> to use MySQL backend(instead of MongoDB)</h1>
 
 <p align="center">
-<span style='align:left'> <img src="https://raw.github.com/rajaraodv/mysqltodo/master/appImg0.png" height="250px" width="350px" /></span><span style='align:left'> 
-<img src="https://raw.github.com/rajaraodv/mysqltodo/master/appImg1.png" height="250px" width="350px" /></span>
+<span style='align:left'> <img src="https://raw.github.com/rajaraodv/mysqlProjectsList/master/appImg0.png" height="250px" width="350px" /></span><span style='align:left'> 
+<img src="https://raw.github.com/rajaraodv/mysqlProjectsList/master/appImg1.png" height="250px" width="350px" /></span>
 </p>
 
 #### Running it locally ####
-* Clone the app to `mysqltodo` folder
-* `cd mysqltodo` folder
+* Clone the app to `mysqlProjectsList` folder
+* `cd mysqlProjectsList` folder
 * `npm install`
 * `node app.js`
 * open browser at `localhost:3000`
@@ -15,12 +15,12 @@
 
 #### Running it on Cloud Foundry ####
 
-* Clone the app to `mysqltodo` folder
-* `cd mysqltodo` folder
+* Clone the app to `mysqlProjectsList` folder
+* `cd mysqlProjectsList` folder
 * `npm install`
 
 ```
-> vmc push mysqltodo
+> vmc push mysqlProjectsList
 Instances> 1
 
 1: node
@@ -39,13 +39,13 @@ Runtime> 3  <---- Select Node.js 0.8v of runtime
 4: 512M
 Memory Limit> 64M <----- 64MB memory
 
-Creating mysqltodo... OK
+Creating mysqlProjectsList... OK
 
-1: mysqltodo.cloudfoundry.com
+1: mysqlProjectsList.cloudfoundry.com
 2: none
-URL> mysqltodo.cloudfoundry.com   <---------This'll be the url of your app
+URL> mysqlProjectsList.cloudfoundry.com   <---------This'll be the url of your app
 
-Updating mysqltodo... OK
+Updating mysqlProjectsList... OK
 
 Create services for application?> y
 
@@ -62,16 +62,16 @@ What kind?> 3      <--------------- Select & add MySQL service
 Name?> mysql-ccc0e <-- Just a name of the MYSQL service
 
 Creating service mysql-ccc0e... OK
-Binding mysql-ccc0e to mysqltodo... OK
+Binding mysql-ccc0e to mysqlProjectsList... OK
 Create another service?> n
 
 Bind other services to application?> n
 
 Save configuration?> n
 
-Uploading mysqltodo... OK
-Starting mysqltodo... OK
-Checking mysqltodo... OK
+Uploading mysqlProjectsList... OK
+Starting mysqlProjectsList... OK
+Checking mysqlProjectsList... OK
 ```
 
 ### Notes ###

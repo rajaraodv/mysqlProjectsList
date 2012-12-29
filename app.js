@@ -35,7 +35,7 @@ app.configure('development', function () {
 });
 
 //Create
-app.post('/todo', function (req, res) {
+app.post('/project', function (req, res) {
     var b = req.body;
     var task = {name:b.name, site:b.site, description:b.description};
 
@@ -49,7 +49,7 @@ app.post('/todo', function (req, res) {
 });
 
 //Read
-app.get('/todo', function (req, res) {
+app.get('/project', function (req, res) {
     //if id is passed, return that task
     if (req.query.id) {
         lib.getTask(req.query.id, function (err, rows) {
@@ -63,7 +63,7 @@ app.get('/todo', function (req, res) {
 });
 
 //Update
-app.put('/todo', function (req, res) {
+app.put('/project', function (req, res) {
     var b = req.body;
     var task = {name:b.name, site:b.site, description:b.description};
 
@@ -77,7 +77,7 @@ app.put('/todo', function (req, res) {
 
 
 //Delete
-app.delete('/todo', function (req, res) {
+app.delete('/project', function (req, res) {
     lib.deleteTask(req.query.id, function (err, info) {
         res.json({"Error":err});
     });
