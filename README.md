@@ -80,9 +80,9 @@ Checking mysqltodo... OK
 * Install latest vmc tool by running `sudo gem install vmc ---pre`
 
 
- ### Credits ###
+### Credits ###
  * Front-end is from AngularJS example.
 
- ### Copyright ###
+### Copyright ###
  VMware
 

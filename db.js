@@ -26,18 +26,18 @@ exports.setupDBAndTable = function (conn) {
     }
 
     //setup 'todos' table w/ schema
-    connection.query('show tables like "todos";', function (err, rows) {
+    connection.query('SHOW TABLES LIKE "todos";', function (err, rows) {
         if (err) return console.log(err);
 
         //create table if it's not already setup
         if (rows.length == 0) {
             var sql = "" +
-                "create table todos(" +
-                " id int unsigned not null auto_increment," +
-                " name varchar(50) not null default ''," +
-                " site varchar(50) not null default ''," +
-                " description varchar(200) not null default ''," +
-                " primary key (id)" +
+                "CREATE TABLE todos(" +
+                " id INT UNSIGNED NOT NULL auto_increment," +
+                " name VARCHAR(50) NOT NULL default ''," +
+                " site VARCHAR(50) NOT NULL default ''," +
+                " description VARCHAR(200) NOT NULL default ''," +
+                " PRIMARY KEY (id)" +
                 ");";
 
             connection.query(sql, function (err) {
@@ -51,26 +51,26 @@ exports.setupDBAndTable = function (conn) {
 };
 
 exports.addTask = function (task, callback) {
-    connection.query("insert into todos (name, site, description) values (?, ?, ?)", [task.name, task.site, task.description], callback);
+    connection.query("INSERT INTO todos (name, site, description) VALUES (?, ?, ?)", [task.name, task.site, task.description], callback);
 };
 
 exports.updateTask = function (id, task, callback) {
-    var sql = "update todos set name='" + task.name
+    var sql = "UPDATE todos SET name='" + task.name
         + "', site='" + task.site
         + "', description='" + task.description
-        + "' where id=" + id;
+        + "' WHERE id=" + id;
 
     connection.query(sql, callback);
 };
 
 exports.getTasks = function (callback) {
-    connection.query("select * from todos", callback);
+    connection.query("SELECT * FROM todos", callback);
 };
 
 exports.getTask = function (id, callback) {
-    connection.query("select * from todos where id=" + id, callback);
+    connection.query("SELECT * FROM todos WHERE id=" + id, callback);
 };
 
 exports.deleteTask = function (id, callback) {
-    connection.query("delete from todos where id=" + id, callback);
+    connection.query("DELETE FROM todos WHERE id=" + id, callback);
 };

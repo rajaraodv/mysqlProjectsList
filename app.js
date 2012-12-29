@@ -12,7 +12,6 @@ var connection = mysql.createConnection({
 });
 
 connection.connect(function (err) {
-    console.log("connection error: " + err);
     if (err) return console.log(err);
 
     lib.setupDBAndTable(connection);
