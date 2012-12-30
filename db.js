@@ -7,32 +7,32 @@ exports.setupDBAndTable = function (conn) {
     //NOTE: This particular (https://github.com/felixge/node-mysql) Mysql module,
     // queues ALL 'connection.query' calls & runs queries in SEQUENCE so we don't have to nest them!
     //i.e. In the below code,
-    //1. create todoDB DB & *its* callback is called FIRST,
-    //2. then 'use todoDB' and *its callback* is called
+    //1. create projectsDB DB & *its* callback is called FIRST,
+    //2. then 'use projectsDB' and *its callback* is called
     //3. then show tables query and *its callback* is called
     //4. then 'create' table is called
 
-    //If not on Cloud Foundry, create DB 'todoDB' and then switch to it 'todoDB'
+    //If not on Cloud Foundry, create DB 'projectsDB' and then switch to it 'projectsDB'
     //Note: Cloud Foundry does these steps automatically.
     if (!process.env.VCAP_SERVICES) {
-        connection.query('CREATE DATABASE IF NOT EXISTS todoDB;', function (err) {
+        connection.query('CREATE DATABASE IF NOT EXISTS projectsDB;', function (err) {
             if (err)  return console.log(err);
         });
 
-        //Switch to 'todoDB' database
-        connection.query('USE  todoDB;', function (err) {
+        //Switch to 'projectsDB' database
+        connection.query('USE  projectsDB;', function (err) {
             if (err)  return console.log(err);
         });
     }
 
-    //setup 'todos' table w/ schema
-    connection.query('SHOW TABLES LIKE "todos";', function (err, rows) {
+    //setup 'projects' table w/ schema
+    connection.query('SHOW TABLES LIKE "projects";', function (err, rows) {
         if (err) return console.log(err);
 
         //create table if it's not already setup
         if (rows.length == 0) {
             var sql = "" +
-                "CREATE TABLE todos(" +
+                "CREATE TABLE projects(" +
                 " id INT UNSIGNED NOT NULL auto_increment," +
                 " name VARCHAR(50) NOT NULL default ''," +
                 " site VARCHAR(50) NOT NULL default ''," +
@@ -41,7 +41,6 @@ exports.setupDBAndTable = function (conn) {
                 ");";
 
             connection.query(sql, function (err) {
-                console.log(2);
                 if (err) return console.log(err);
             });
         }
@@ -50,12 +49,12 @@ exports.setupDBAndTable = function (conn) {
 
 };
 
-exports.addTask = function (task, callback) {
-    connection.query("INSERT INTO todos (name, site, description) VALUES (?, ?, ?)", [task.name, task.site, task.description], callback);
+exports.addProject = function (task, callback) {
+    connection.query("INSERT INTO projects (name, site, description) VALUES (?, ?, ?)", [task.name, task.site, task.description], callback);
 };
 
-exports.updateTask = function (id, task, callback) {
-    var sql = "UPDATE todos SET name='" + task.name
+exports.updateProject = function (id, task, callback) {
+    var sql = "UPDATE projects SET name='" + task.name
         + "', site='" + task.site
         + "', description='" + task.description
         + "' WHERE id=" + id;
@@ -63,14 +62,14 @@ exports.updateTask = function (id, task, callback) {
     connection.query(sql, callback);
 };
 
-exports.getTasks = function (callback) {
-    connection.query("SELECT * FROM todos", callback);
+exports.getProjects = function (callback) {
+    connection.query("SELECT * FROM projects", callback);
 };
 
-exports.getTask = function (id, callback) {
-    connection.query("SELECT * FROM todos WHERE id=" + id, callback);
+exports.getProject = function (id, callback) {
+    connection.query("SELECT * FROM projects WHERE id=" + id, callback);
 };
 
-exports.deleteTask = function (id, callback) {
-    connection.query("DELETE FROM todos WHERE id=" + id, callback);
+exports.deleteProject = function (id, callback) {
+    connection.query("DELETE FROM projects WHERE id=" + id, callback);
 };

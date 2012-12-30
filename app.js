@@ -37,26 +37,26 @@ app.configure('development', function () {
 //Create
 app.post('/project', function (req, res) {
     var b = req.body;
-    var task = {name:b.name, site:b.site, description:b.description};
+    var project = {name:b.name, site:b.site, description:b.description};
 
-    lib.addTask(task, function (err, info) {
+    lib.addProject(project, function (err, info) {
         if (err) {
             return res.json({"error":"something went wrong" + err});
         }
-        task.id = info.insertId;
-        res.json(task);
+        project.id = info.insertId;
+        res.json(project);
     });
 });
 
 //Read
 app.get('/project', function (req, res) {
-    //if id is passed, return that task
+    //if id is passed, return that project
     if (req.query.id) {
-        lib.getTask(req.query.id, function (err, rows) {
+        lib.getProject(req.query.id, function (err, rows) {
             return err ? res.json(err) : res.json(rows && rows[0]);
         });
-    } else { //return all tasks
-        lib.getTasks(function (err, rows) {
+    } else { //return all projects
+        lib.getProjects(function (err, rows) {
             return err ? res.json(err) : res.json(rows);
         });
     }
@@ -65,20 +65,20 @@ app.get('/project', function (req, res) {
 //Update
 app.put('/project', function (req, res) {
     var b = req.body;
-    var task = {name:b.name, site:b.site, description:b.description};
+    var project = {name:b.name, site:b.site, description:b.description};
 
-    lib.updateTask(req.query.id, task, function (err, info) {
+    lib.updateProject(req.query.id, project, function (err, info) {
         if (err) {
             return res.json({"error":"something went wrong" + err});
         }
-        res.json(task);
+        res.json(project);
     });
 });
 
 
 //Delete
 app.delete('/project', function (req, res) {
-    lib.deleteTask(req.query.id, function (err, info) {
+    lib.deleteProject(req.query.id, function (err, info) {
         res.json({"Error":err});
     });
 });
